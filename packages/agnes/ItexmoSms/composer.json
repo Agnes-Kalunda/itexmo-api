@@ -1,0 +1,19 @@
+{
+    "name": "agnes/itexmo-sms",
+    "description": "This is Itexmo SMS Gateway Integration - Developer Documentation",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Agnes\\ItexmoSms\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Agnes",
+            "email": "agypeter97@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
