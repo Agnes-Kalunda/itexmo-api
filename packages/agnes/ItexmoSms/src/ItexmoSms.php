@@ -37,6 +37,17 @@ class ItexmoSms{
     }
 
 
+    public function broadcastOtp($recipient, $message){
+        return $this->makeRequest('broadcast-otp',[
+            'email'=> $this->config['email'],
+            'password'=> $this->config['password'],
+            'ApiCode'=> $this->config['api_code'],
+            'Recipient'=> $recipient,
+            'Message'=> $message,
+        ]);
+    }
+
+
     
 }
 
