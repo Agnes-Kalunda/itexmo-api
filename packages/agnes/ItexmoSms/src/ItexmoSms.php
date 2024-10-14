@@ -27,6 +27,15 @@ class ItexmoSms{
 
     }
 
+    public function broadcast2d(array $messages){
+        return $this->makeRequest('broadcast-2d',[
+            'email'=> $this->config['email'],
+            'password'=> $this->config['password'],
+            'ApiCode'=> $this->config['api_code'],
+            'Messages'=> json_encode($messages),
+        ]);
+    }
+
 
     
 }
