@@ -3,6 +3,8 @@
 namespace Agnes\ItexmoSms;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use InvalidArgumentException;
 use Illuminate\Support\Facades\Config;
 
 class ItexmoSms{
@@ -14,6 +16,13 @@ class ItexmoSms{
         $this->client = new Client();
 
     }
+
+
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
+    }
+
 
     public function broadcast($recipients, $message){
 
@@ -72,6 +81,8 @@ class ItexmoSms{
             return ['success' => false, 'message' => $e->getMessage()];
         }
     }
+
+
 
 
     protected function handleResponse($result, $endpoint)

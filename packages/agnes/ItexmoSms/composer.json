@@ -1,22 +1,14 @@
 {
     "name": "agnes/itexmo-sms",
-    "description": "Itexmo SMS Gateway Integration for Laravel 5.8",
+    "description": "Itexmo SMS Gateway Integration for Laravel",
     "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Agnes",
-            "email": "agypeter97@gmail.com"
-        }
-    ],
     "require": {
         "php": "^7.1.3",
-        "illuminate/support": "5.8.*",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "illuminate/support": "5.8.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.5",
-        "orchestra/testbench": "3.8.*"
+        "phpunit/phpunit": "^7.5"
     },
     "autoload": {
         "psr-4": {
@@ -31,12 +23,12 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Agnes\\ItexmoSms\\ItexmoSmsServiceProvider"
-            ]
+                "Agnes\\ItexmoSms\\ItexmoServiceProvider"
+            ],
+            "aliases": {
+                "Itexmo": "Agnes\\ItexmoSms\\Facades\\Itexmo"
+            }
         }
     },
-    "scripts": {
-        "test": "vendor/bin/phpunit"
-    },
-    "minimum-stability": "stable"
+    "license": "MIT"
 }
