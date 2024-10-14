@@ -59,11 +59,44 @@ class ItexmoSms{
     }
 
 
-    
+    protected function makeRequest($endpoint, array $params)
+    {
+        try {
+            $response = $this->client->post($this->config['api_url'] . '/' . $endpoint, [
+                'form_params' => $params,
+            ]);
+
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $this->handleResponse($result, $endpoint);
+        } catch (GuzzleException $e) {
+            return ['success' => false, 'message' => $e->getMessage()];
+        }
+    }
 
 
-    
+    protected function handleResponse($result, $endpoint)
+    {
+        if (isset($result['Error']) && $result['Error'] === false) {
+            return [
+                'success' => true,
+                'data' => $result,
+            ];
+        } else {
+            return [
+                'success' => false,
+                'message' => $result['Message'] ?? 'Unknown error occurred',
+                'data' => $result,
+            ];
+        }
+    }
 }
+
+
+
+
+
+    
+
 
 
 
