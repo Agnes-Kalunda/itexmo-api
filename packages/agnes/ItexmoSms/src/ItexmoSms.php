@@ -25,6 +25,12 @@ class ItexmoSms{
 
 
     public function broadcast($recipients, $message){
+        if (!is_array($recipients) || empty($recipients)) {
+            throw new InvalidArgumentException('Recipients must be a non-empty array');
+        }
+        if (empty($message)) {
+            throw new InvalidArgumentException('Message cannot be empty');
+        }
 
         return $this->makeRequest('broadcast',[
             'email' => $this->config['email'],

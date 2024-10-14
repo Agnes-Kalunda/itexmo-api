@@ -110,4 +110,45 @@ class ItexmoSmsTest extends TestCase
         $this->assertEquals('PRSAM75814724521785347217', $result['data']['ReferenceId']);
     }
 
+    public function testQuery()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], json_encode([
+                'DateTime' => '2020-01-03 15:04:33',
+                'Error' => false,
+                'Balance' => 100,
+            ])),
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+
+        $this->itexmo->client = $client;
+
+        $result = $this->itexmo->query('BALANCE');
+
+        $this->assertTrue($result['success']);
+        $this->assertEquals(100, $result['data']['Balance']);
+    }
+
+    public function testErrorHandling()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], json_encode([
+                'DateTime' => '2020-01-03 15:04:33',
+                'Error' => true,
+                'Message' => 'ITEXMO email and password is required'
+            ])),
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+
+        $this->itexmo->client = $client;
+
+        $result = $this->itexmo->broadcast(['1234567890'], 'Test message');
+
+        $this->assertFalse($result['success']);
+        $this->assertEquals('ITEXMO email and password is required', $result['message']);
+    }
 }
