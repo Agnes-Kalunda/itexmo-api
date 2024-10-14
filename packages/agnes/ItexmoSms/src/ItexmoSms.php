@@ -47,6 +47,20 @@ class ItexmoSms{
         ]);
     }
 
+    public function query($queryType, array $params = []){
+        $data =[
+            'email'=> $this->config['email'],
+            'password'=> $this->config['password'],
+            'ApiCode'=> $this->config['api_code'],
+            'QueryType'=> $queryType,
+        ];
+
+        return $this->makeRequest('query', array_merge($data, $params));
+    }
+
+
+    
+
 
     
 }
