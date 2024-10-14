@@ -4,7 +4,7 @@ namespace Agnes\ItexmoSms;
 
 use Illuminate\Support\ServiceProvider;
 
-class ItexmoSmsServiceProvider extends ServiceProvider
+class ItexmoServiceProvider extends ServiceProvider
 {
     public function boot()
     {
@@ -19,8 +19,8 @@ class ItexmoSmsServiceProvider extends ServiceProvider
             __DIR__.'/../config/itexmo.php', 'itexmo'
         );
 
-        $this->app->singleton(ItexmoSms::class, function ($app) {
-            return new ItexmoSms();
+        $this->app->singleton('itexmo', function ($app) {
+            return new ItexmoSms($app['config']['itexmo']);
         });
     }
 }
