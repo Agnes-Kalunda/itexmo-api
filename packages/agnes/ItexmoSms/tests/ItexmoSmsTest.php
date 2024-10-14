@@ -70,7 +70,7 @@ class ItexmoSmsTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
 
-        $this->itexmo->client = $client;
+        $this->itexmo->setClient($client);
 
         $messages = [
             ['recipient' => '1234567890', 'message' => 'Test message 1'],
@@ -101,7 +101,7 @@ class ItexmoSmsTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
 
-        $this->itexmo->client = $client;
+        $this->itexmo->setClient($client);
 
         $result = $this->itexmo->broadcastOtp('1234567890', 'Your OTP is 123456');
 
@@ -123,7 +123,7 @@ class ItexmoSmsTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
 
-        $this->itexmo->client = $client;
+        $this->itexmo->setClient($client);
 
         $result = $this->itexmo->query('BALANCE');
 
@@ -144,7 +144,7 @@ class ItexmoSmsTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
 
-        $this->itexmo->client = $client;
+        $this->itexmo->setClient($client);
 
         $result = $this->itexmo->broadcast(['1234567890'], 'Test message');
 
